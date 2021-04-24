@@ -8,9 +8,26 @@
 
 config_version=4
 
+<<<<<<< Updated upstream
 _global_script_classes=[  ]
 _global_script_class_icons={
 
+=======
+_global_script_classes=[ {
+"base": "Node",
+"class": "Day",
+"language": "GDScript",
+"path": "res://scripts/Day.gd"
+}, {
+"base": "Node",
+"class": "Todo",
+"language": "GDScript",
+"path": "res://scripts/Todo.gd"
+} ]
+_global_script_class_icons={
+"Day": "",
+"Todo": ""
+>>>>>>> Stashed changes
 }
 
 [application]
@@ -18,6 +35,13 @@ _global_script_class_icons={
 config/name="ld49"
 run/main_scene="res://scenes/MainScene.tscn"
 config/icon="res://icon.png"
+
+[autoload]
+
+LocationEnum="*res://scripts/Enums/Location.gd"
+ModsEnum="*res://scripts/Enums/Mods.gd"
+TodoTags="*res://scripts/Enums/TodoTags.gd"
+WeatherEnum="*res://scripts/Enums/Weather.gd"
 
 [physics]
 
