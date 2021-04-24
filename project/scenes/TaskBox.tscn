@@ -1,0 +1,46 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://scenes/TaskBox.gd" type="Script" id=1]
+[ext_resource path="res://assets/art/line.png" type="Texture" id=2]
+
+[node name="TaskBox" type="HBoxContainer"]
+margin_right = 164.0
+margin_bottom = 24.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CheckBox" type="CheckBox" parent="."]
+margin_right = 24.0
+margin_bottom = 24.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TaskName" type="Label" parent="."]
+margin_left = 28.0
+margin_top = 5.0
+margin_right = 71.0
+margin_bottom = 19.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "TASK 1"
+
+[node name="TaskTime" type="Label" parent="."]
+margin_left = 75.0
+margin_top = 5.0
+margin_right = 100.0
+margin_bottom = 19.0
+custom_colors/font_color = Color( 0.572549, 0.113725, 0.113725, 1 )
+text = "1 hr"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="line" type="Sprite" parent="."]
+visible = false
+position = Vector2( 73.5759, 11.7636 )
+scale = Vector2( 0.548158, 1 )
+texture = ExtResource( 2 )
+
+[connection signal="toggled" from="CheckBox" to="." method="_on_CheckBox_toggled"]

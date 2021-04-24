@@ -1,5 +1,0 @@
-enum {
-	BANK_HOLIDAY,
-	WEEKEND,
-	WORK_HOLIDAY
-}
