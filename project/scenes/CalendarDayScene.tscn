@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://assets/art/calendar_day.png" type="Texture" id=1]
-[ext_resource path="res://assets/art/circle_black.png" type="Texture" id=2]
+[ext_resource path="res://assets/art/weather/rain.png" type="Texture" id=2]
 
 [node name="CalendarDaySprite1" type="TextureRect"]
 texture = ExtResource( 1 )
@@ -21,8 +21,8 @@ __meta__ = {
 }
 
 [node name="WeatherSprite" type="Sprite" parent="."]
-position = Vector2( 20.5121, 68.7859 )
-scale = Vector2( 0.151918, 0.14776 )
+position = Vector2( 21.4549, 70.4358 )
+scale = Vector2( 0.65487, 0.588873 )
 texture = ExtResource( 2 )
 
 [node name="MemoLabel" type="Label" parent="."]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://assets/art/background.png" type="Texture" id=1]
 [ext_resource path="res://scenes/NotificationScene.tscn" type="PackedScene" id=2]
@@ -6,6 +6,10 @@
 [ext_resource path="res://scripts/add_item.gd" type="Script" id=4]
 [ext_resource path="res://scenes/CalendarDayScene.tscn" type="PackedScene" id=5]
 [ext_resource path="res://scenes/ControllerNode.gd" type="Script" id=6]
+[ext_resource path="res://assets/art/postit1.png" type="Texture" id=7]
+[ext_resource path="res://assets/art/phone.png" type="Texture" id=8]
+[ext_resource path="res://assets/art/start_work.png" type="Texture" id=9]
+[ext_resource path="res://assets/art/todo.png" type="Texture" id=10]
 
 [node name="Main Scene" type="Node2D"]
 
@@ -13,7 +17,7 @@
 script = ExtResource( 6 )
 
 [node name="background" type="Sprite" parent="."]
-position = Vector2( 575.789, 310.661 )
+position = Vector2( 578.292, 303.003 )
 scale = Vector2( 1.1672, 1.14431 )
 texture = ExtResource( 1 )
 
@@ -22,32 +26,36 @@ texture = ExtResource( 1 )
 [node name="GUICanvas" type="CanvasLayer" parent="."]
 
 [node name="WindowControls" type="HBoxContainer" parent="GUICanvas"]
-margin_left = 950.0
-margin_right = 1178.0
-margin_bottom = 172.0
-rect_scale = Vector2( 0.3, 0.3 )
+margin_left = 996.0
+margin_top = 1.0
+margin_right = 1275.0
+margin_bottom = 234.0
+rect_scale = Vector2( 0.1, 0.1 )
 alignment = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="ExitButton" type="Button" parent="GUICanvas/WindowControls"]
-margin_left = 10.0
-margin_right = 217.0
-margin_bottom = 172.0
+margin_left = 36.0
+margin_right = 243.0
+margin_bottom = 233.0
 icon = ExtResource( 3 )
 
 [node name="StartWorkButton" type="Button" parent="GUICanvas"]
-margin_left = 43.504
-margin_top = 511.782
-margin_right = 341.504
-margin_bottom = 557.782
+margin_left = 80.9272
+margin_top = 514.886
+margin_right = 292.927
+margin_bottom = 570.886
+icon = ExtResource( 9 )
+expand_icon = true
 __meta__ = {
 "_edit_group_": true,
 "_edit_use_anchors_": false
 }
 
 [node name="Label" type="Label" parent="GUICanvas/StartWorkButton"]
+visible = false
 margin_left = 13.0
 margin_top = 9.0
 margin_right = 287.0
@@ -74,25 +82,23 @@ __meta__ = {
 
 [node name="PostItBackground" type="Sprite" parent="GUICanvas"]
 modulate = Color( 0.847059, 0.843137, 0.313726, 1 )
-position = Vector2( 183.911, 383.318 )
-scale = Vector2( 0.19943, 0.31137 )
-texture = ExtResource( 1 )
+position = Vector2( 179.804, 353.088 )
+texture = ExtResource( 7 )
 __meta__ = {
 "_edit_group_": true
 }
 
 [node name="VBoxContainer" type="VBoxContainer" parent="GUICanvas/PostItBackground"]
-margin_left = -453.0
-margin_top = -252.0
-margin_right = -256.0
-margin_bottom = -135.0
-rect_scale = Vector2( 4.5, 4.5 )
+margin_left = -79.0
+margin_top = -67.0
+margin_right = 85.0
+margin_bottom = 56.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="TaskBox" type="HBoxContainer" parent="GUICanvas/PostItBackground/VBoxContainer"]
-margin_right = 197.0
+margin_right = 164.0
 margin_bottom = 24.0
 
 [node name="CheckBox" type="CheckBox" parent="GUICanvas/PostItBackground/VBoxContainer/TaskBox"]
@@ -123,7 +129,7 @@ __meta__ = {
 
 [node name="TaskBox2" type="HBoxContainer" parent="GUICanvas/PostItBackground/VBoxContainer"]
 margin_top = 28.0
-margin_right = 197.0
+margin_right = 164.0
 margin_bottom = 52.0
 
 [node name="CheckBox" type="CheckBox" parent="GUICanvas/PostItBackground/VBoxContainer/TaskBox2"]
@@ -154,7 +160,7 @@ __meta__ = {
 
 [node name="TaskBox3" type="HBoxContainer" parent="GUICanvas/PostItBackground/VBoxContainer"]
 margin_top = 56.0
-margin_right = 197.0
+margin_right = 164.0
 margin_bottom = 80.0
 
 [node name="CheckBox" type="CheckBox" parent="GUICanvas/PostItBackground/VBoxContainer/TaskBox3"]
@@ -185,7 +191,7 @@ __meta__ = {
 
 [node name="TaskBox4" type="HBoxContainer" parent="GUICanvas/PostItBackground/VBoxContainer"]
 margin_top = 84.0
-margin_right = 197.0
+margin_right = 164.0
 margin_bottom = 108.0
 
 [node name="CheckBox" type="CheckBox" parent="GUICanvas/PostItBackground/VBoxContainer/TaskBox4"]
@@ -214,11 +220,16 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="todo" type="Sprite" parent="GUICanvas/PostItBackground"]
+position = Vector2( -30.7318, -128.757 )
+scale = Vector2( 0.9, 0.9 )
+texture = ExtResource( 10 )
+
 [node name="CalendarContainer" type="HBoxContainer" parent="GUICanvas"]
-margin_left = 33.6274
-margin_top = 76.8268
-margin_right = 1107.63
-margin_bottom = 264.827
+margin_left = 31.8835
+margin_top = 29.7622
+margin_right = 1105.88
+margin_bottom = 209.762
 rect_scale = Vector2( 0.9, 0.9 )
 hint_tooltip = "This is my calendar. "
 alignment = 1
@@ -230,62 +241,78 @@ __meta__ = {
 [node name="CalendarDaySprite1" parent="GUICanvas/CalendarContainer" instance=ExtResource( 5 )]
 modulate = Color( 0.376471, 0.360784, 0.360784, 1 )
 margin_right = 150.0
-margin_bottom = 188.0
+margin_bottom = 180.0
 
 [node name="CalendarDaySprite2" parent="GUICanvas/CalendarContainer" instance=ExtResource( 5 )]
 margin_left = 154.0
 margin_right = 304.0
-margin_bottom = 188.0
+margin_bottom = 180.0
 
 [node name="CalendarDaySprite3" parent="GUICanvas/CalendarContainer" instance=ExtResource( 5 )]
 margin_left = 308.0
 margin_right = 458.0
-margin_bottom = 188.0
+margin_bottom = 180.0
 
 [node name="CalendarDaySprite4" parent="GUICanvas/CalendarContainer" instance=ExtResource( 5 )]
 margin_left = 462.0
 margin_right = 612.0
-margin_bottom = 188.0
+margin_bottom = 180.0
 
 [node name="CalendarDaySprite5" parent="GUICanvas/CalendarContainer" instance=ExtResource( 5 )]
 margin_left = 616.0
 margin_right = 766.0
-margin_bottom = 188.0
+margin_bottom = 180.0
 
 [node name="CalendarDaySprite6" parent="GUICanvas/CalendarContainer" instance=ExtResource( 5 )]
 margin_left = 770.0
 margin_right = 920.0
-margin_bottom = 188.0
+margin_bottom = 180.0
 
 [node name="CalendarDaySprite7" parent="GUICanvas/CalendarContainer" instance=ExtResource( 5 )]
 margin_left = 924.0
 margin_right = 1074.0
-margin_bottom = 188.0
+margin_bottom = 180.0
 
-[node name="VBoxContainer" type="VBoxContainer" parent="GUICanvas"]
-margin_left = 705.232
-margin_top = 281.42
-margin_right = 956.232
-margin_bottom = 493.42
+[node name="TextureRect" type="TextureRect" parent="GUICanvas"]
+margin_left = 673.587
+margin_top = 196.838
+margin_right = 923.587
+margin_bottom = 596.838
+texture = ExtResource( 8 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="GUICanvas/TextureRect"]
+margin_left = 19.0
+margin_top = 38.0
+margin_right = 229.0
+margin_bottom = 381.0
 __meta__ = {
 "_edit_group_": true,
 "_edit_use_anchors_": false
 }
 
-[node name="NotificationBackground" parent="GUICanvas/VBoxContainer" instance=ExtResource( 2 )]
-margin_right = 251.0
+[node name="NotificationBackground" parent="GUICanvas/TextureRect/VBoxContainer" instance=ExtResource( 2 )]
+margin_left = 0.0
+margin_top = 0.0
+margin_right = 210.0
+margin_bottom = 67.0
 
-[node name="NotificationBackground2" parent="GUICanvas/VBoxContainer" instance=ExtResource( 2 )]
-margin_top = 54.0
-margin_right = 251.0
-margin_bottom = 104.0
+[node name="NotificationBackground2" parent="GUICanvas/TextureRect/VBoxContainer" instance=ExtResource( 2 )]
+margin_left = 0.0
+margin_top = 71.0
+margin_right = 210.0
+margin_bottom = 138.0
 
-[node name="NotificationBackground3" parent="GUICanvas/VBoxContainer" instance=ExtResource( 2 )]
-margin_top = 108.0
-margin_right = 251.0
-margin_bottom = 158.0
+[node name="NotificationBackground3" parent="GUICanvas/TextureRect/VBoxContainer" instance=ExtResource( 2 )]
+margin_left = 0.0
+margin_top = 142.0
+margin_right = 210.0
+margin_bottom = 209.0
 
-[node name="NotificationBackground4" parent="GUICanvas/VBoxContainer" instance=ExtResource( 2 )]
-margin_top = 162.0
-margin_right = 251.0
-margin_bottom = 212.0
+[node name="NotificationBackground4" parent="GUICanvas/TextureRect/VBoxContainer" instance=ExtResource( 2 )]
+margin_left = 0.0
+margin_top = 213.0
+margin_right = 210.0
+margin_bottom = 280.0
