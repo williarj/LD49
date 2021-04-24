@@ -1,0 +1,38 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://assets/art/calendar_day.png" type="Texture" id=1]
+[ext_resource path="res://assets/art/circle_black.png" type="Texture" id=2]
+
+[node name="CalendarDaySprite1" type="TextureRect"]
+texture = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="DayLabel" type="Label" parent="."]
+margin_left = 11.9381
+margin_top = 10.0013
+margin_right = 135.938
+margin_bottom = 43.0013
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "DAYDAY"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="WeatherSprite" type="Sprite" parent="."]
+position = Vector2( 20.5121, 68.7859 )
+scale = Vector2( 0.151918, 0.14776 )
+texture = ExtResource( 2 )
+
+[node name="MemoLabel" type="Label" parent="."]
+margin_left = 15.902
+margin_top = 87.7941
+margin_right = 139.902
+margin_bottom = 167.794
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "TOO MUCH WORK: 4hrs"
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
