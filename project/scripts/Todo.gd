@@ -7,10 +7,12 @@ var long_description = ""
 var tags_applied = []
 var tags_required= []
 var tags_incompatible = []
+var current_incompatible_tags = []
 var weight = 1
 #var location = Globals.LocationEnum.PARK
 export(float, 0.5, 24, 0.5) var hours_required := 1.5
 var is_done := false
+var is_possible := true
 
 func load_from_dict(dict):
 	short_description = dict["short_description"]
@@ -30,14 +32,24 @@ func load_from_todo(todo : Todo):
 	hours_required = todo.hours_required
 	weight = todo.weight
 	
+func can_be_done(tags_in_effect):
+	current_incompatible_tags = []
+	is_possible = true
+	for tag in tags_in_effect:
+		if tag in tags_incompatible:
+			current_incompatible_tags.append(tag)
+			is_possible = false
 
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass
-	#location = Globals.LocationEnum.GOVT_OFFICE
-
-func can_be_done(today):
-	pass
+func pretty_tags():
+	var tag_string = ""
+	if current_incompatible_tags.size() > 0:
+		for index in range(0, current_incompatible_tags.size()-1):
+			var tag = current_incompatible_tags[index] 
+			if !tag.begins_with("_"):
+				tag_string += tag + ", "
+	tag_string.trim_suffix(", ")
+	return tag_string
+		
 
 func perform_task():
 	return tags_applied

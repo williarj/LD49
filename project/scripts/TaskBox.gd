@@ -34,12 +34,18 @@ func _on_CheckBox_toggled(button_pressed):
 	
 
 func set_from_task(task : Todo):
-	$TaskName.text = task.short_description
+	$TaskName.text = task.short_description + " " + str(task.get_instance_id())
 	hint_tooltip = task.long_description
 	$TaskTime.text = str(task.hours_required) + " hrs."
 	set_task_complete(task.is_done)
 	visible = true
-	# $CheckBox.disabled = !task.can_be_done()
+	#UI indication you cant click this
+	
+	$CheckBox.disabled = !task.is_possible
+	$disabled_box.visible = false
+	if !task.is_possible and !task.is_done:
+		$disabled_box.visible = true
+		hint_tooltip += "\n***This task is not possible today because of one of these:\n" + str(task.pretty_tags())
 	
 func clear():
 	$TaskName.text = ""

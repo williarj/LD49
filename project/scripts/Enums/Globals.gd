@@ -10,6 +10,9 @@ enum WeatherEnum {
 	SNOW,
 }
 
+static func weather_enum_to_tag(enum_item):
+	var tags = ["sun","rain","wind","cloud","snow"]
+	return tags[enum_item]
 
 #Unused atm
 enum LocationEnum {

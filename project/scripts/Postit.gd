@@ -41,11 +41,11 @@ func _on_DirectorNode_update_task_list(tasks, total_task_count):
 		# set disable
 	
 	if total_task_count > 10:
-		get_parent().texture = load("res://assets/art/postit3.png")
+		get_parent().get_node("PostIt").texture = load("res://assets/art/postit3.png")
 	elif total_task_count > 5:
-		get_parent().texture = load("res://assets/art/postit2.png")
+		get_parent().get_node("PostIt").texture = load("res://assets/art/postit2.png")
 	else:
-		get_parent().texture = load("res://assets/art/postit1.png")
+		get_parent().get_node("PostIt").texture = load("res://assets/art/postit1.png")
 	
 	#yeah, this is gross
 	#this also still counts finished tasks that are in the queue

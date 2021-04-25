@@ -37,7 +37,8 @@ func clear_tags():
 #this is really inefficient and loops a bunch of extra times
 func add_tags(tags):
 	for tag in tags:
-		add_tag(tag)
+		if !tag.begins_with("_"):
+			add_tag(tag)
 
 
 #when the day rolls over clear out the old tags

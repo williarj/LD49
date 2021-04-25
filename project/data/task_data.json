@@ -14,8 +14,8 @@
 	"short_description":"Clean kids",
 	"long_description":"They need to be washed.",
 	"hours_required": 2.0,
-	"tags_applied":["wet"],
-	"tags_incompatible":[],
+	"tags_applied":["wet","_sorrow"],
+	"tags_incompatible":["wet"],
 	"tags_required":[],
 	"weight":1
 },
@@ -25,7 +25,7 @@
 	"long_description":"Don't forget the date.",
 	"hours_required": 0.5,
 	"tags_applied":["bored"],
-	"tags_incompatible":[],
+	"tags_incompatible":["snow"],
 	"tags_required":[],
 	"weight":1
 }
