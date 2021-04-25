@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=2]
 
-[ext_resource path="res://scenes/TaskBox.gd" type="Script" id=1]
+[ext_resource path="res://scripts/TaskBox.gd" type="Script" id=1]
 [ext_resource path="res://assets/art/line.png" type="Texture" id=2]
 
 [node name="TaskBox" type="HBoxContainer"]
@@ -42,5 +42,4 @@ visible = false
 position = Vector2( 73.5759, 11.7636 )
 scale = Vector2( 0.548158, 1 )
 texture = ExtResource( 2 )
-
-[connection signal="toggled" from="CheckBox" to="." method="_on_CheckBox_toggled"]
+[connection signal="pressed" from="CheckBox" to="." method="_on_CheckBox_pressed"]

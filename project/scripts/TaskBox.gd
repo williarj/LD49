@@ -49,3 +49,8 @@ func clear():
 	$CheckBox.pressed = false
 	visible = false
 	
+
+
+func _on_CheckBox_pressed():
+	emit_signal("task_selected", task_index)
+	pass # Replace with function body.

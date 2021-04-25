@@ -24,6 +24,8 @@ func _on_DirectorNode_progress_day(week):
 		var day := week[day_index] as Day
 		var calendar_day := CalendarDays[day_index] as CalendarDay
 		calendar_day.toggle_past(day.is_past)
+		calendar_day.set_weather(day.weather)
+		if !day.is_past: calendar_day.reset()
 	#wipe hours
 	#set history
 	#show summary
@@ -32,7 +34,7 @@ func _on_DirectorNode_progress_day(week):
 	pass # Replace with function body.
 
 
-func _on_DirectorNode_update_today(tasks, today_index):
+func _on_DirectorNode_update_today(tasks, today_index, tags):
 	var today := CalendarDays[today_index] as CalendarDay
 	today.update_today(tasks)
 	pass # Replace with function body.

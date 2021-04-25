@@ -1,0 +1,28 @@
+[
+{
+	"description":"Some Crazy Shit",
+	"notifications":["Tornado", "This is the end times", "No more tomatoes"],
+	"event_task_probability":0.3,
+    "tasks":
+
+	[{
+		"short_description":"Buy Tomatoes",
+		"long_description":"A crate of them, they'll help... maybe.",
+		"hours_required": 1.0,
+		"tags_applied":[],
+		"tags_incompatible":[],
+		"tags_required":[],
+		"weight":4
+	},
+
+	{
+		"short_description":"Withstand the winds",
+		"long_description":"Hold on tight.",
+		"hours_required": 6.0,
+		"tags_applied":["tired","physical"],
+		"tags_incompatible":["tired"],
+		"tags_required":["windy"],
+		"weight":2
+	}]
+}
+]

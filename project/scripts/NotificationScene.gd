@@ -25,8 +25,7 @@ func _on_Timer_timeout():
 	visible = false
 	pass # Replace with function body.
 
-
-func _on_ExitButton_pressed():
-	print("Pressed the button, notification knows.")
+func set_notification(text):
+	$NotificationText.text = text
 	startTimer()
-	pass # Replace with function body.
+

@@ -12,12 +12,17 @@ _global_script_classes=[ {
 "base": "TextureRect",
 "class": "CalendarDay",
 "language": "GDScript",
-"path": "res://scenes/CalendarDayScene.gd"
+"path": "res://scripts/CalendarDayScene.gd"
 }, {
 "base": "Node",
 "class": "Day",
 "language": "GDScript",
 "path": "res://scripts/Day.gd"
+}, {
+"base": "Node",
+"class": "Event",
+"language": "GDScript",
+"path": "res://scripts/Event.gd"
 }, {
 "base": "Reference",
 "class": "Globals",
@@ -27,7 +32,7 @@ _global_script_classes=[ {
 "base": "HBoxContainer",
 "class": "TaskBox",
 "language": "GDScript",
-"path": "res://scenes/TaskBox.gd"
+"path": "res://scripts/TaskBox.gd"
 }, {
 "base": "Node",
 "class": "Todo",
@@ -37,6 +42,7 @@ _global_script_classes=[ {
 _global_script_class_icons={
 "CalendarDay": "",
 "Day": "",
+"Event": "",
 "Globals": "",
 "TaskBox": "",
 "Todo": ""

@@ -5,9 +5,12 @@ class_name CalendarDay
 # var a = 2
 # var b = "text"
 
+export var day_name = "DAYDAY"
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	$DayLabel.text = day_name
+	$MemoLabel.text = ""
 	pass # Replace with function body.
 
 func set_day_name(text : String):
@@ -21,6 +24,8 @@ func set_weather(weather):
 			$WeatherSprite.texture = load("res://assets/art/weather/cloudy.png")
 		Globals.WeatherEnum.WIND:
 			$WeatherSprite.texture = load("res://assets/art/weather/wind.png")
+		Globals.WeatherEnum.SNOW:
+			$WeatherSprite.texture = load("res://assets/art/weather/snow.png")
 		_:
 			$WeatherSprite.texture = load("res://assets/art/weather/partly_cloudy.png")
 			
@@ -51,3 +56,6 @@ func update_today(tasks):
 	set_memo(total_memo)
 	set_time_allocation(str(total_time))
 	pass # Replace with function body.
+
+func reset():
+	$MemoLabel.text = ""

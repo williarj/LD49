@@ -1,6 +1,17 @@
 class_name Globals
 extends Reference
 
+
+enum WeatherEnum {
+	SUN,
+	RAIN,
+	WIND,
+	CLOUD,
+	SNOW,
+}
+
+
+#Unused atm
 enum LocationEnum {
 	GOVT_OFFICE,
 	GROCERY_STORE,
@@ -22,13 +33,5 @@ enum TagsEnum {
 	EMERGENCY,
 	REQUIRES_DRIVING,
 	WALKABLE
-}
-
-enum WeatherEnum {
-	SUN,
-	RAIN,
-	WIND,
-	CLOUD,
-	SNOW,
 }
 

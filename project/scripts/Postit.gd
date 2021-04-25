@@ -47,6 +47,10 @@ func _on_DirectorNode_update_task_list(tasks, total_task_count):
 	else:
 		get_parent().texture = load("res://assets/art/postit1.png")
 	
+	#yeah, this is gross
+	#this also still counts finished tasks that are in the queue
+	get_parent().get_node("task_count_label").text = str(total_task_count)
+	
 	#loop through given tasks
 	for task_index in range(tasks.size()):
 		(TaskBoxes[task_index] as TaskBox).set_from_task(tasks[task_index])
@@ -54,3 +58,4 @@ func _on_DirectorNode_update_task_list(tasks, total_task_count):
 	#	set possible
 	#	set finished tasks visible stuff with a long ocmment
 	pass # Replace with function body.
+
