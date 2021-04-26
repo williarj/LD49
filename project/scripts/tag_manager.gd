@@ -29,11 +29,6 @@ func display():
 func clear_tags():
 	current_tags = []
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
-
-
 #this is really inefficient and loops a bunch of extra times
 func add_tags(tags):
 	clear_tags()

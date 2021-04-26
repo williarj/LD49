@@ -8,6 +8,8 @@ var tags_applied = {}
 var tags_required= []
 var tags_incompatible = []
 var tags_that_prevent = []
+var tags_prereq = []
+var tags_consumed = []
 var current_incompatible_tags = []
 var weight = 1
 #var location = Globals.LocationEnum.PARK
@@ -22,6 +24,8 @@ func load_from_dict(dict):
 	tags_required = dict["tags_required"]
 	tags_incompatible = dict["tags_incompatible"]
 	tags_that_prevent = dict["tags_that_prevent"]
+	tags_prereq = dict["tags_prereq"]
+	tags_consumed = dict["tags_consumed"]
 	hours_required = dict["hours_required"]
 	weight = dict["weight"]
 
@@ -32,6 +36,8 @@ func load_from_todo(todo : Todo):
 	tags_required = todo.tags_required.duplicate()
 	tags_incompatible = todo.tags_incompatible.duplicate()
 	tags_that_prevent = todo.tags_that_prevent.duplicate()
+	tags_prereq = todo.tags_prereq.duplicate()
+	tags_consumed = todo.tags_consumed.duplicate()
 	hours_required = todo.hours_required
 	weight = todo.weight
 	

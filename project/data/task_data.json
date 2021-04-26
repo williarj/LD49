@@ -96,7 +96,7 @@
 		"tags_incompatible":[],
 		"tags_that_prevent": [],
 		"tags_required":[],
-		"tags_prereq":[],
+		"tags_prereq":["has_wood"],
 		"tags_consumed": ["has_wood"],
 		"weight":1
 	}

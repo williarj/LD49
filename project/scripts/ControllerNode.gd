@@ -18,6 +18,8 @@ var assigned_tasks = []
 var possible_tasks = []
 var possible_events = []
 
+var permanent_tags = []
+
 var shuffled_tasks = []
 
 
@@ -69,11 +71,16 @@ func add_random_tasks(n=1):
 
 func get_task_bag_for_today():
 	var possible_tasks_today = possible_tasks.duplicate()
-	var todays_tags = (Days[TodayIndex] as Day).get_tags()
+	var todays_tags = get_tags_for_today()
+	#remove tasks for which there is a tag that prevents spawning
 	for task in possible_tasks:
 		for tag in todays_tags:
 			if task.tags_that_prevent.has(tag):
 				possible_tasks_today.erase(task)
+		for tag_prereq in task.tags_prereq:
+			if !todays_tags.has(tag_prereq):
+				possible_tasks_today.erase(task)
+		
 	var weighted_tasks_today = weight_tasks(possible_tasks_today)
 	return weighted_tasks_today
 
@@ -84,6 +91,11 @@ func weight_tasks(tasks):
 		for i in range(ceil(task.weight)):
 			weighted_tasks.append(task)
 	return weighted_tasks
+
+func get_tags_for_today():
+	var todays_tags = (Days[TodayIndex] as Day).get_tags()
+	todays_tags += permanent_tags
+	return todays_tags
 
 func sample_approx_poisson():
 	#assumes lambda = 2, capped at 5
@@ -105,7 +117,6 @@ func load_tasks():
 	var file = File.new()
 	file.open("res://data/task_data.json", file.READ)
 	var text = file.get_as_text()
-	print(text)
 	var tasks_dict = JSON.parse(text).result
 	
 	return(task_dicts_to_array(tasks_dict))
@@ -177,14 +188,24 @@ func _on_StartWorkButton_pressed():
 		
 		# have each of those tasks take effect
 		var tags_to_apply = task.perform_task()
+		
 		for tag in tags_to_apply.keys():
-			for i in range(tags_to_apply[tag]):
-				get_future_day(i).add_tag(tag)
+			var duration = tags_to_apply[tag]
+			if duration < 0:
+				if !permanent_tags.has(tag):
+					permanent_tags.append(tag)
+			else:
+				for i in range(tags_to_apply[tag]):
+					get_future_day(i).add_tag(tag)
+		
+		for tag in task.tags_consumed:
+			permanent_tags.erase(tag)
+			get_future_day(0).remove_tag(tag)
 		
 		# mark tasks as complete
 		task.is_done = true
 	
-	tags_from_yesterday = Days[TodayIndex].get_tags()
+	tags_from_yesterday = get_tags_for_today()
 	emit_signal("add_tags_today", tags_from_yesterday)
 		
 	assigned_tasks.clear()
@@ -209,7 +230,6 @@ func _on_StartWorkButton_pressed():
 		var note = current_event.sample_notification()
 		if note != null:
 			emit_signal("push_notification", note)
-	
 	
 	add_random_tasks(new_task_count)
 	
