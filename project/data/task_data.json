@@ -1,33 +1,65 @@
 [
-
-{
-	"short_description":"Mow lawn",
-	"long_description":"Mow the whole lawn.",
-	"hours_required": 1.0,
-	"tags_applied":["tired","physical"],
-	"tags_incompatible":["tired","rainy"],
-	"tags_required":[],
-	"weight":3
-},
-
-{
-	"short_description":"Clean kids",
-	"long_description":"They need to be washed.",
-	"hours_required": 2.0,
-	"tags_applied":["wet","_sorrow"],
-	"tags_incompatible":["wet"],
-	"tags_required":[],
-	"weight":1
-},
-
-{
-	"short_description":"Do paperwork",
-	"long_description":"Don't forget the date.",
-	"hours_required": 0.5,
-	"tags_applied":["bored"],
-	"tags_incompatible":["snow"],
-	"tags_required":[],
-	"weight":1
-}
-
+	{
+		"short_description":"Mow lawn",
+		"long_description":"Mow the whole lawn.",
+		"hours_required": 1.0,
+		"tags_applied": {
+			"tired": 1, 
+			"dirty": 1,
+			"mowed_lawn": 7
+		},
+		"tags_incompatible":["tired","rain", "snow"],
+		"tags_that_prevent": ["mowed_lawn"],
+		"tags_required":[],
+		"weight":3
+	},
+	{
+		"short_description":"Clean kids",
+		"long_description":"They need to be washed.",
+		"hours_required": 2.0,
+		"tags_applied": {
+			"wet": 1,
+			"_sorrow": 1
+		},
+		"tags_incompatible":["dirty"],
+		"tags_that_prevent": [],
+		"tags_required":[],
+		"weight":1
+	},
+	{
+		"short_description":"Do paperwork",
+		"long_description":"Don't forget the date.",
+		"hours_required": 0.5,
+		"tags_applied": {
+			"bored": 1
+		},
+		"tags_incompatible":["snow"],
+		"tags_that_prevent": [],
+		"tags_required":[],
+		"weight":1
+	},
+	{
+		"short_description":"Clean gutters",
+		"long_description":"They're full of leaves.",
+		"hours_required": 4,
+		"tags_applied": {
+			"dirty": 1
+		},
+		"tags_incompatible":["snow", "wind", "rain"],
+		"tags_that_prevent": [],
+		"tags_required":[],
+		"weight":1
+	},
+	{
+		"short_description":"House chores",
+		"long_description":"Everything is dirty",
+		"hours_required": 4,
+		"tags_applied": {
+			"tired": 1
+		},
+		"tags_incompatible":[],
+		"tags_that_prevent": [],
+		"tags_required":[],
+		"weight":1
+	}
 ]

@@ -4,9 +4,10 @@ class_name Todo
 
 export(String) var short_description = ""
 var long_description = ""
-var tags_applied = []
+var tags_applied = {}
 var tags_required= []
 var tags_incompatible = []
+var tags_that_prevent = []
 var current_incompatible_tags = []
 var weight = 1
 #var location = Globals.LocationEnum.PARK
@@ -20,6 +21,7 @@ func load_from_dict(dict):
 	tags_applied = dict["tags_applied"]
 	tags_required = dict["tags_required"]
 	tags_incompatible = dict["tags_incompatible"]
+	tags_that_prevent = dict["tags_that_prevent"]
 	hours_required = dict["hours_required"]
 	weight = dict["weight"]
 
@@ -29,6 +31,7 @@ func load_from_todo(todo : Todo):
 	tags_applied = todo.tags_applied.duplicate()
 	tags_required = todo.tags_required.duplicate()
 	tags_incompatible = todo.tags_incompatible.duplicate()
+	tags_that_prevent = todo.tags_that_prevent.duplicate()
 	hours_required = todo.hours_required
 	weight = todo.weight
 	

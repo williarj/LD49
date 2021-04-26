@@ -4,7 +4,7 @@ class_name Day
 
 var weather
 var event
-var mods := []
+var tags := []
 export (float, 0, 15, 0.5) var hours_available
 var is_past = false
 
@@ -12,11 +12,14 @@ var is_past = false
 func _init():
 	weather = Globals.WeatherEnum.values()[randi() % Globals.WeatherEnum.size()]
 
-func add_mod(mod): 
-	if mods.has(mod):
-		return
+func add_tag(tag): 
+	if tags.has(tag):
+		pass
 	else:
-		mods.append(mod) 
+		tags.append(tag) 
 
-func remove_mod(mod):
-	mods.erase(mod)
+func remove_tag(tag):
+	tags.erase(tag)
+
+func get_tags():
+	return tags.duplicate()

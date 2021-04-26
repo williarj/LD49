@@ -334,8 +334,6 @@ script = ExtResource( 6 )
 [connection signal="task_selected" from="GUICanvas/Container/VBoxContainer/TaskBox5" to="GUICanvas/Container/VBoxContainer" method="_on_TaskBox_task_selected"]
 [connection signal="add_tags_today" from="DirectorNode" to="GUICanvas/TagsNode/today" method="add_tags"]
 [connection signal="progress_day" from="DirectorNode" to="GUICanvas/CalendarContainer" method="_on_DirectorNode_progress_day"]
-[connection signal="progress_day" from="DirectorNode" to="GUICanvas/TagsNode/tomorrow" method="_on_DirectorNode_progress_day"]
-[connection signal="progress_day" from="DirectorNode" to="GUICanvas/TagsNode/today" method="_on_DirectorNode_progress_day"]
 [connection signal="push_notification" from="DirectorNode" to="GUICanvas/Phone/VBoxContainer" method="push_notification"]
 [connection signal="update_task_list" from="DirectorNode" to="GUICanvas/Container/VBoxContainer" method="_on_DirectorNode_update_task_list"]
 [connection signal="update_today" from="DirectorNode" to="GUICanvas/CalendarContainer" method="_on_DirectorNode_update_today"]
