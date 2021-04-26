@@ -34,7 +34,7 @@ func _on_CheckBox_toggled(button_pressed):
 	
 
 func set_from_task(task : Todo):
-	$TaskName.text = task.short_description + " " + str(task.get_instance_id())
+	$TaskName.text = task.short_description# + " " + str(task.get_instance_id())
 	hint_tooltip = task.long_description
 	$TaskTime.text = str(task.hours_required) + " hrs."
 	set_task_complete(task.is_done)

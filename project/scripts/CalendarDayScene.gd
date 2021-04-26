@@ -26,8 +26,10 @@ func set_weather(weather):
 			$WeatherSprite.texture = load("res://assets/art/weather/wind.png")
 		Globals.WeatherEnum.SNOW:
 			$WeatherSprite.texture = load("res://assets/art/weather/snow.png")
+		Globals.WeatherEnum.SUN:
+			$WeatherSprite.texture = load("res://assets/art/weather/sun.png")
 		_:
-			$WeatherSprite.texture = load("res://assets/art/weather/partly_cloudy.png")
+			$WeatherSprite.texture = load("res://assets/art/weather/sun.png")
 			
 
 func set_memo(text : String):

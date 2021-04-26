@@ -5,7 +5,7 @@ signal progress_day(day_index)
 signal update_task_list(visible_tasks, total_task_count)
 signal push_notification(text)
 signal add_tags_today(tags)
-signal game_ended(game_ender)
+signal game_ended(game_ender, task_count)
 
 # Declare member variables here. Examples:
 # var a = 2
@@ -112,23 +112,18 @@ func weight_tasks(tasks):
 func get_tags_for_today():
 	var todays_tags = (Days[TodayIndex] as Day).get_tags()
 	todays_tags += permanent_tags
+	todays_tags += [Globals.weather_enum_to_tag(Days[TodayIndex].weather)]
 	return todays_tags
 
 func sample_approx_poisson():
 	#assumes lambda = 2, capped at 5
-	var rand = randf()
-	if rand < 0.135:
-		return 0 
-	elif rand < 0.405:
-		return 1
-	elif rand < 0.65:
-		return 2
-	elif rand < 0.855:
-		return 3
-	elif rand < 0.945:
-		return 4
-	else:
-		return 5
+	var num = 0
+	for i in range(5):
+		if randf() < 0.5:
+			num += 1
+		else:
+			break
+	return num
 
 func load_tasks():
 	var file = File.new()
@@ -214,13 +209,15 @@ func _on_StartWorkButton_pressed():
 			else:
 				for i in range(tags_to_apply[tag]):
 					get_future_day(i).add_tag(tag)
+		# mark tasks as complete
+		task.is_done = true
 		
+	for task in assigned_tasks:
+		task = task as Todo
 		for tag in task.tags_consumed:
 			permanent_tags.erase(tag)
 			get_future_day(0).remove_tag(tag)
 		
-		# mark tasks as complete
-		task.is_done = true
 	
 	tags_from_yesterday = get_tags_for_today()
 	emit_signal("add_tags_today", tags_from_yesterday)
@@ -261,10 +258,10 @@ func _on_StartWorkButton_pressed():
 		for game_ender in current_event.game_enders:
 			if game_ender in todays_tags:
 				print("game ended: " + str(game_ender))
-				emit_signal("game_ended", game_ender)
-	if "dead" in todays_tags:
+				emit_signal("game_ended", game_ender, Tasks.size())
+	if "dead" in todays_tags or "_dead" in todays_tags:
 		print("game ended: dead")
-		emit_signal("game_ended", "dead")
+		emit_signal("game_ended", "dead", Tasks.size())
 
 func get_week_start():
 	return int(floor(TodayIndex / 7)*7)
@@ -275,7 +272,7 @@ func get_visible_tasks():
 	
 	#check if each task is possible today
 	for task in visible_tasks:
-		task.can_be_done(tags_from_yesterday+[Globals.weather_enum_to_tag(Days[TodayIndex].weather)])
+		task.can_be_done(get_tags_for_today())
 #		task.is_possible = true
 #		for tag in tags_from_yesterday:
 #			if tag in task.tags_incompatible:
@@ -310,3 +307,7 @@ func _on_VBoxContainer_task_toggled(checked_indexes):
 		
 	emit_signal("update_today", assigned_tasks, TodayIndex % 7, tomorrow_tags)
 	pass # Replace with function body.
+
+
+func _on_ExitButton_pressed():
+	get_tree().change_scene("res://scenes/splash.tscn")

@@ -52,16 +52,18 @@ func can_be_done(tags_in_effect):
 		if tag in tags_incompatible:
 			current_incompatible_tags.append(tag)
 			is_possible = false
+	for tag in tags_required:
+		if !(tag in tags_in_effect):
+			is_possible = false
+			current_incompatible_tags.append("NEEDED:"+tag)
 
 func pretty_tags():
 	var tag_string = ""
 	if current_incompatible_tags.size() > 0:
-		for index in range(0, current_incompatible_tags.size()-1):
-			var tag = current_incompatible_tags[index] 
+		for tag in current_incompatible_tags:
 			if !tag.begins_with("_"):
 				tag_string += tag + ", "
-	tag_string.trim_suffix(", ")
-	return tag_string
+	return tag_string.trim_suffix(", ")
 		
 
 func perform_task():

@@ -99,5 +99,180 @@
 		"tags_prereq":["has_wood"],
 		"tags_consumed": ["has_wood"],
 		"weight":1
+	},
+	{
+		"short_description":"Do homework",
+		"long_description":"Why do I still have homework?",
+		"hours_required": 2,
+		"tags_applied": {
+			"bored": 1,
+			"knowledgable":1
+		},
+		"tags_incompatible":[],
+		"tags_that_prevent": ["bored"],
+		"tags_required":[],
+		"tags_prereq":[],
+		"tags_consumed": [],
+		"weight":1
+	},
+	{
+		"short_description":"Fix car",
+		"long_description":"This car breaks down too much.",
+		"hours_required": 2,
+		"tags_applied": {
+			"broke": 3,
+			"mobile": 3
+		},
+		"tags_incompatible":[],
+		"tags_that_prevent": ["new_car"],
+		"tags_required":[],
+		"tags_prereq":[],
+		"tags_consumed": [],
+		"weight":1
+	},
+	{
+		"short_description":"Buy new car.",
+		"long_description":"I need an upgrade.",
+		"hours_required": 8,
+		"tags_applied": {
+			"broke": 7,
+			"mobile": 3,
+			"new_car": -1
+		},
+		"tags_incompatible":[],
+		"tags_that_prevent": ["new_car"],
+		"tags_required":[],
+		"tags_prereq":[],
+		"tags_consumed": [],
+		"weight":1
+	},
+	{
+		"short_description":"Go drag racing.",
+		"long_description":"Lets take this baby for a spin!",
+		"hours_required": 2,
+		"tags_applied": {
+			"injured": 2
+		},
+		"tags_incompatible":[],
+		"tags_that_prevent": ["drunk"],
+		"tags_required":["new_car"],
+		"tags_prereq":["new_car"],
+		"tags_consumed": ["new_car"],
+		"weight":1
+	},
+	{
+		"short_description":"Make cookies.",
+		"long_description":"What would Mary Berry do?",
+		"hours_required": 2,
+		"tags_applied": {
+			"cookies": 1
+		},
+		"tags_incompatible":[],
+		"tags_that_prevent": [],
+		"tags_required":[],
+		"tags_prereq":["food"],
+		"tags_consumed": [],
+		"weight":1
+	},
+	{
+		"short_description":"Do taxes.",
+		"long_description":"Why is this so confusing?",
+		"hours_required": 8,
+		"tags_applied": {
+			"paid_taxes": -1
+		},
+		"tags_incompatible":[],
+		"tags_that_prevent": [],
+		"tags_required":["food"],
+		"tags_prereq":[],
+		"tags_consumed": [],
+		"weight":1
+	},
+	{
+		"short_description":"Buy groceries.",
+		"long_description":"I need food.",
+		"hours_required": 1,
+		"tags_applied": {
+			"food": 3
+		},
+		"tags_incompatible":[],
+		"tags_that_prevent": ["broke"],
+		"tags_required":[],
+		"tags_prereq":[],
+		"tags_consumed": [],
+		"weight":1
+	},
+	{
+		"short_description":"Have a beer.",
+		"long_description":"Time to relax.",
+		"hours_required": 2,
+		"tags_applied": {
+			"drunk": 1
+		},
+		"tags_incompatible":[],
+		"tags_that_prevent": ["broke"],
+		"tags_required":[],
+		"tags_prereq":[],
+		"tags_consumed": ["tired"],
+		"weight":1
+	},
+	{
+		"short_description":"Work out.",
+		"long_description":"Lets get swole.",
+		"hours_required": 1,
+		"tags_applied": {
+			"tired": 1,
+			"swole": 1
+		},
+		"tags_incompatible":[],
+		"tags_that_prevent": ["tired"],
+		"tags_required":[],
+		"tags_prereq":[],
+		"tags_consumed": [],
+		"weight":1
+	},
+	{
+		"short_description":"Attend meeting.",
+		"long_description":"Why do these keep hapening?",
+		"hours_required": 1,
+		"tags_applied": {
+			"tired": 1,
+			"bored": 1,
+			"grumpy": 1
+		},
+		"tags_incompatible":[],
+		"tags_that_prevent": [],
+		"tags_required":[],
+		"tags_prereq":[],
+		"tags_consumed": [],
+		"weight":4
+	},
+	{
+		"short_description":"Eat bacon.",
+		"long_description":"So tasty.",
+		"hours_required": 1,
+		"tags_applied": {
+			"bacon": 5
+		},
+		"tags_incompatible":[],
+		"tags_that_prevent": [],
+		"tags_required":["food"],
+		"tags_prereq":[],
+		"tags_consumed": [],
+		"weight":1
+	},
+	{
+		"short_description":"Eat burger.",
+		"long_description":"So good.",
+		"hours_required": 1,
+		"tags_applied": {
+			"_dead": -1
+		},
+		"tags_incompatible":[],
+		"tags_that_prevent": [],
+		"tags_required":["food"],
+		"tags_prereq":["bacon"],
+		"tags_consumed": [],
+		"weight":1
 	}
 ]

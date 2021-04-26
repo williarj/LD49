@@ -8,7 +8,7 @@ class_name Notification
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	$Timer.wait_time = 2.0
+	$Timer.wait_time = 3.0
 	pass # Replace with function body.
 
 

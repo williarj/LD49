@@ -1,7 +1,14 @@
 [
 	{
-		"description":"Some Crazy Shit",
-		"notifications":["Tornado", "This is the end times", "No more tomatoes"],
+		"description":"Tormato",
+		"notifications":[
+						"Scientists say tomatoes are growing a lot this year.", 
+						"Strange weather patterns seen nearby.", 
+						"Apples seen raining in Nevada.",
+						"More plant and weather interactions expected in the future.",
+						"Large tornado seen forming near tomato farms.",
+						"High velocity tomatos known to be deadly, say police."
+						],
 		"event_task_probability":0.3,
 		"tasks": [
 			{
@@ -10,7 +17,7 @@
 				"hours_required": 1.0,
 				"tags_applied":{},
 				"tags_incompatible":[],
-				"tags_that_prevent": [],
+				"tags_that_prevent": ["broke"],
 				"tags_required":[],
 				"tags_prereq":[],
 				"tags_consumed": [],
@@ -27,12 +34,300 @@
 				},
 				"tags_incompatible":["tired"],
 				"tags_that_prevent": [],
-				"tags_required":["windy"],
+				"tags_required":["wind", "windows_boarded", "tomato_knowledge"],
+				"tags_prereq":["windows_boarded", "tomato_knowledge"],
+				"tags_consumed": [],
+				"weight":2
+			},
+
+			{
+				"short_description":"Investigate tomato farms.",
+				"long_description":"Lots of weird news about tomatos recently.",
+				"hours_required": 6.0,
+				"tags_applied": {
+					"tomato_knowledge": -1
+				},
+				"tags_incompatible":["tired"],
+				"tags_that_prevent": ["tomato_knowledge"],
+				"tags_required":[],
 				"tags_prereq":[],
 				"tags_consumed": [],
 				"weight":2
 			}
 		],
 		"game_enders": ["withstood_the_wind"]
+	},
+	
+	{
+		"description":"Zombies",
+		"notifications":[
+						"Wizards seen prowling around grave yards again.",
+						"Sales of spooky black robes on the rise.",
+						"All the bones missing from KFC.",
+						"Pentagrams appear at all handicapped parking spots.",
+						"Mortician: All the bodies are gone!",
+						"Zombies seen fighting pea plants at park.",
+						"Local morgues close: bodies wont stay embalmed"
+						],
+		"event_task_probability":0.3,
+		"tasks": [
+			{
+				"short_description":"Stock up on meds",
+				"long_description":"Need some supplies, just in case.",
+				"hours_required": 2.0,
+				"tags_applied":{
+					"meds": -1},
+				"tags_incompatible":[],
+				"tags_that_prevent": [],
+				"tags_required":[],
+				"tags_prereq":[],
+				"tags_consumed": [],
+				"weight":1
+			},
+
+			{
+				"short_description":"Buy guns.",
+				"long_description":"America was right.",
+				"hours_required": 6.0,
+				"tags_applied": {
+					"guns": -1,
+					"broke": 10
+				},
+				"tags_incompatible":["broke"],
+				"tags_that_prevent": [],
+				"tags_required":[],
+				"tags_prereq":[],
+				"tags_consumed": [],
+				"weight":1
+			},
+
+			{
+				"short_description":"Barricade lawn.",
+				"long_description":"Need to protect the garden.",
+				"hours_required": 8.0,
+				"tags_applied": {
+					"lawn_barricade": -1,
+					"tired": 1
+				},
+				"tags_incompatible":[],
+				"tags_that_prevent": [],
+				"tags_required":["has_wood"],
+				"tags_prereq":[],
+				"tags_consumed": ["has_wood"],
+				"weight":2
+			},
+
+			{
+				"short_description":"Search for survivors.",
+				"long_description":"Others need help, we're ready to do so.",
+				"hours_required": 6.0,
+				"tags_applied": {
+					"survivor": -1
+				},
+				"tags_incompatible":["tired"],
+				"tags_that_prevent": [],
+				"tags_required":["lawn_barricade", "meds", "guns"],
+				"tags_prereq":[],
+				"tags_consumed": ["meds"],
+				"weight":2
+			},
+
+			{
+				"short_description":"Search for survivors.",
+				"long_description":"Others need help, we're ready to do so.",
+				"hours_required": 6.0,
+				"tags_applied": {
+					"_dead": -1,
+					"survivor": 2
+				},
+				"tags_incompatible":[],
+				"tags_that_prevent": [],
+				"tags_required":["lawn_barricade", "meds"],
+				"tags_prereq":[],
+				"tags_consumed": [],
+				"weight":2
+			},
+
+			{
+				"short_description":"Fight off the Zeds.",
+				"long_description":"They're at the barricade!",
+				"hours_required": 4.0,
+				"tags_applied": {
+					"tired": 1
+				},
+				"tags_incompatible":[],
+				"tags_that_prevent": [],
+				"tags_required":["lawn_barricade"],
+				"tags_prereq":[],
+				"tags_consumed": ["lawn_barricade"],
+				"weight":2
+			},
+
+			{
+				"short_description":"Fight off the Zeds.",
+				"long_description":"They're at the barricade!",
+				"hours_required": 4.0,
+				"tags_applied": {
+					"tired": 1
+				},
+				"tags_incompatible":[],
+				"tags_that_prevent": [],
+				"tags_required":["lawn_barricade"],
+				"tags_prereq":["peas"],
+				"tags_consumed": [],
+				"weight":2
+			},
+
+			{
+				"short_description":"Plant peas.",
+				"long_description":"A delightful plant.",
+				"hours_required": 2.0,
+				"tags_applied": {
+					"peas": -1
+				},
+				"tags_incompatible":[],
+				"tags_that_prevent": [],
+				"tags_required":[],
+				"tags_prereq":[],
+				"tags_consumed": [],
+				"weight":2
+			},
+
+			{
+				"short_description":"Buy robes.",
+				"long_description":"The new fashion trend.",
+				"hours_required": 0.5,
+				"tags_applied": {
+					"robes": -1
+				},
+				"tags_incompatible":["broke"],
+				"tags_that_prevent": [],
+				"tags_required":[],
+				"tags_prereq":[],
+				"tags_consumed": [],
+				"weight":2
+			},
+
+			{
+				"short_description":"Buy wizard hat.",
+				"long_description":"I want to fit in.",
+				"hours_required": 0.5,
+				"tags_applied": {
+					"wizard_hat": -1
+				},
+				"tags_incompatible":["broke"],
+				"tags_that_prevent": [],
+				"tags_required":[],
+				"tags_prereq":[],
+				"tags_consumed": [],
+				"weight":2
+			},
+
+			{
+				"short_description":"Learn magic.",
+				"long_description":"I'm pro-fireball.",
+				"hours_required": 12.0,
+				"tags_applied": {
+					"magic": -1
+				},
+				"tags_incompatible":["tired","guns"],
+				"tags_that_prevent": [],
+				"tags_required":[],
+				"tags_prereq":["robes", "wizard_hat"],
+				"tags_consumed": [],
+				"weight":2
+			},
+
+			{
+				"short_description":"Dabble in necromancy.",
+				"long_description":"Dead things can be friends too.",
+				"hours_required": 2.0,
+				"tags_applied": {
+					"necromancy": -1
+				},
+				"tags_incompatible":["tired"],
+				"tags_that_prevent": [],
+				"tags_required":[],
+				"tags_prereq":["magic"],
+				"tags_consumed": ["magic"],
+				"weight":2
+			},
+
+			{
+				"short_description":"Take the wizarding exam.",
+				"long_description":"I'm ready for it.",
+				"hours_required": 3.0,
+				"tags_applied": {
+					"is_wizard": -1
+				},
+				"tags_incompatible":["guns"],
+				"tags_that_prevent": [],
+				"tags_required":[],
+				"tags_prereq":["magic"],
+				"tags_consumed": [],
+				"weight":2
+			},
+
+			{
+				"short_description":"Take the wizarding exam.",
+				"long_description":"I'm ready for it.",
+				"hours_required": 3.0,
+				"tags_applied": {
+					"_is_zombie": -1
+				},
+				"tags_incompatible":["guns"],
+				"tags_that_prevent": [],
+				"tags_required":[],
+				"tags_prereq":["necromancy"],
+				"tags_consumed": [],
+				"weight":1
+			},
+
+			{
+				"short_description":"Cure zombies.",
+				"long_description":"Science will win the day!",
+				"hours_required": 6.0,
+				"tags_applied": {
+					"safe_house": -1
+				},
+				"tags_incompatible":["tired"],
+				"tags_that_prevent": [],
+				"tags_required":[],
+				"tags_prereq":["survivor","meds"],
+				"tags_consumed": [],
+				"weight":2
+			},
+
+			{
+				"short_description":"Control the dead.",
+				"long_description":"Magic was always the answer.",
+				"hours_required": 6.0,
+				"tags_applied": {
+					"cure_zombie": -1
+				},
+				"tags_incompatible":["tired"],
+				"tags_that_prevent": [],
+				"tags_required":["necromancy"],
+				"tags_prereq":["necromancy"],
+				"tags_consumed": [],
+				"weight":2
+			},
+
+			{
+				"short_description":"Cure zombies.",
+				"long_description":"Magic was always the answer.",
+				"hours_required": 6.0,
+				"tags_applied": {
+					"cure_zombie": -1
+				},
+				"tags_incompatible":["tired"],
+				"tags_that_prevent": [],
+				"tags_required":["magic"],
+				"tags_prereq":["is_wizard"],
+				"tags_consumed": [],
+				"weight":2
+			}
+		],
+		"game_enders": ["is_wizard", "safe_house", "_is_zombie","cure_zombie"]
 	}
 ]
