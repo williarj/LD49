@@ -1,0 +1,11 @@
+*        text=auto
+*.txt    text
+*.tres   text
+*.import text
+*.gd     text
+*.godot  text
+*.cfg    text
+*.tscn   text
+
+*.ttf    -text
+*.png    -text
