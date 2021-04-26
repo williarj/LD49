@@ -18,6 +18,8 @@ var assigned_tasks = []
 var possible_tasks = []
 var possible_events = []
 
+var shuffled_tasks = []
+
 
 var current_event : Event = null
 var event_start_day = 3
@@ -42,7 +44,6 @@ func _ready():
 	
 	pass # Replace with function body.
 
-var shuffled_tasks = []
 func add_random_tasks(n=1):
 	var task_copy 
 	#chance of sampling one event task each day
@@ -54,18 +55,28 @@ func add_random_tasks(n=1):
 			print(Tasks[-1].short_description)
 	
 	#sample standard tasks
+	var todays_task_bag = get_task_bag_for_today()
+	var task_bag = []
+	
 	for i in range(n):
-		if (shuffled_tasks.size() < 1):
-			order_tasks()
+		if (task_bag.size() < 1):
+			task_bag = todays_task_bag.duplicate()
+			task_bag.shuffle()
 		#var task = possible_tasks[randi() % possible_tasks.size()]
 		task_copy = Todo.new()
-		task_copy.load_from_todo(shuffled_tasks.pop_back())
+		task_copy.load_from_todo(task_bag.pop_back())
 		Tasks.append(task_copy)
 
-func order_tasks():
-	shuffled_tasks = weighted_tasks.duplicate()
-	shuffled_tasks.shuffle()
-	
+func get_task_bag_for_today():
+	var possible_tasks_today = possible_tasks.duplicate()
+	var todays_tags = (Days[TodayIndex] as Day).get_tags()
+	for task in possible_tasks:
+		for tag in todays_tags:
+			if task.tags_that_prevent.has(tag):
+				possible_tasks_today.erase(task)
+	var weighted_tasks_today = weight_tasks(possible_tasks_today)
+	return weighted_tasks_today
+
 func weight_tasks(tasks):
 	weighted_tasks = []
 	for task in tasks:
@@ -94,6 +105,7 @@ func load_tasks():
 	var file = File.new()
 	file.open("res://data/task_data.json", file.READ)
 	var text = file.get_as_text()
+	print(text)
 	var tasks_dict = JSON.parse(text).result
 	
 	return(task_dicts_to_array(tasks_dict))
@@ -158,16 +170,21 @@ func _on_StartWorkButton_pressed():
 	
 	#deal with done tasks
 	tags_from_yesterday = []#TODO: THIS BREAKS MULTI DAY THINGS?
+	
 	# loop through selected tasks
 	for task in assigned_tasks:
 		task = task as Todo
 		
 		# have each of those tasks take effect
-		tags_from_yesterday += task.perform_task()
+		var tags_to_apply = task.perform_task()
+		for tag in tags_to_apply.keys():
+			for i in range(tags_to_apply[tag]):
+				get_future_day(i).add_tag(tag)
+		
 		# mark tasks as complete
 		task.is_done = true
 	
-	tags_from_yesterday = remove_duplicates(tags_from_yesterday)
+	tags_from_yesterday = Days[TodayIndex].get_tags()
 	emit_signal("add_tags_today", tags_from_yesterday)
 		
 	assigned_tasks.clear()
@@ -227,20 +244,22 @@ func make_week():
 	for i in range(7):
 		Days.append(Day.new())
 
-func make_tasks():
-	for i in range(13):
-		Tasks.append(Todo.new())
-
+func get_future_day(n):
+	while (TodayIndex + n) >= Days.size():
+		make_week()
+	return Days[TodayIndex + n]
 
 func _on_VBoxContainer_task_toggled(checked_indexes):
 	var visible_tasks = get_visible_tasks()
 	
 	assigned_tasks.clear()
 	
-	var applied_tags = []
+	var additional_tags = []
 	for checked_index in checked_indexes:
 		assigned_tasks.append(visible_tasks[checked_index])
-		applied_tags += (visible_tasks[checked_index] as Todo).tags_applied
+		additional_tags += (visible_tasks[checked_index] as Todo).tags_applied.keys()
+	
+	var tomorrow_tags = get_future_day(1).get_tags() + additional_tags
 		
-	emit_signal("update_today", assigned_tasks, TodayIndex % 7, applied_tags)
+	emit_signal("update_today", assigned_tasks, TodayIndex % 7, tomorrow_tags)
 	pass # Replace with function body.
