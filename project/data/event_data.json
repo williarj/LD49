@@ -13,6 +13,8 @@
 		"tags_incompatible":[],
 		"tags_that_prevent": [],
 		"tags_required":[],
+		"tags_prereq":[],
+		"tags_consumed": [],
 		"weight":4
 	},
 
@@ -26,6 +28,8 @@
 		"tags_incompatible":["tired"],
 		"tags_that_prevent": [],
 		"tags_required":["windy"],
+		"tags_prereq":[],
+		"tags_consumed": [],
 		"weight":2
 	}]
 }

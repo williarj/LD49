@@ -11,6 +11,8 @@
 		"tags_incompatible":["tired","rain", "snow"],
 		"tags_that_prevent": ["mowed_lawn"],
 		"tags_required":[],
+		"tags_prereq":[],
+		"tags_consumed": [],
 		"weight":3
 	},
 	{
@@ -24,6 +26,8 @@
 		"tags_incompatible":["dirty"],
 		"tags_that_prevent": [],
 		"tags_required":[],
+		"tags_prereq":[],
+		"tags_consumed": [],
 		"weight":1
 	},
 	{
@@ -36,6 +40,8 @@
 		"tags_incompatible":["snow"],
 		"tags_that_prevent": [],
 		"tags_required":[],
+		"tags_prereq":[],
+		"tags_consumed": [],
 		"weight":1
 	},
 	{
@@ -48,6 +54,8 @@
 		"tags_incompatible":["snow", "wind", "rain"],
 		"tags_that_prevent": [],
 		"tags_required":[],
+		"tags_prereq":[],
+		"tags_consumed": [],
 		"weight":1
 	},
 	{
@@ -60,6 +68,36 @@
 		"tags_incompatible":[],
 		"tags_that_prevent": [],
 		"tags_required":[],
+		"tags_prereq":[],
+		"tags_consumed": [],
+		"weight":1
+	},
+	{
+		"short_description":"Purchase wood",
+		"long_description":"Got wood?",
+		"hours_required": 2,
+		"tags_applied": {
+			"has_wood": -1
+		},
+		"tags_incompatible":[],
+		"tags_that_prevent": [],
+		"tags_required":[],
+		"tags_prereq":[],
+		"tags_consumed": [],
+		"weight":1
+	},
+	{
+		"short_description":"Board up windows",
+		"long_description":"Shut out the whole world",
+		"hours_required": 8,
+		"tags_applied": {
+			"windows_boarded": -1
+		},
+		"tags_incompatible":[],
+		"tags_that_prevent": [],
+		"tags_required":[],
+		"tags_prereq":[],
+		"tags_consumed": ["has_wood"],
 		"weight":1
 	}
 ]
