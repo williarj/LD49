@@ -1,17 +1,19 @@
 extends Node
 class_name Event
 
-var event_tasks
-var description
-var notifications
-var event_task_probability
+var event_tasks = []
+var description = ""
+var notifications = []
+var event_task_probability = 0.0
 var unused_notifications
+var game_enders = []
 
 func reset_event():
 	unused_notifications = notifications.duplicate()
 	unused_notifications.shuffle()
 
 func load_from_dict(dict):
+	game_enders = dict["game_enders"]
 	event_tasks = dict["tasks"]
 	description = dict["description"]
 	notifications = dict["notifications"]

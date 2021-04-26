@@ -2,6 +2,8 @@ extends Node
 
 class_name Todo
 
+var orig_id = get_instance_id()
+
 export(String) var short_description = ""
 var long_description = ""
 var tags_applied = {}
@@ -14,6 +16,7 @@ var current_incompatible_tags = []
 var weight = 1
 #var location = Globals.LocationEnum.PARK
 export(float, 0.5, 24, 0.5) var hours_required := 1.5
+
 var is_done := false
 var is_possible := true
 
@@ -30,6 +33,7 @@ func load_from_dict(dict):
 	weight = dict["weight"]
 
 func load_from_todo(todo : Todo):
+	orig_id = todo.get_instance_id()
 	short_description = todo.short_description
 	long_description = todo.long_description
 	tags_applied = todo.tags_applied.duplicate()

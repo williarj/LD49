@@ -5,6 +5,7 @@ signal progress_day(day_index)
 signal update_task_list(visible_tasks, total_task_count)
 signal push_notification(text)
 signal add_tags_today(tags)
+signal game_ended(game_ender)
 
 # Declare member variables here. Examples:
 # var a = 2
@@ -37,7 +38,7 @@ func _ready():
 	possible_tasks = load_tasks()
 	weighted_tasks = weight_tasks(possible_tasks)
 	possible_events = load_events()
-	add_random_tasks(13)
+	add_random_tasks(3)
 	
 	#make_tasks()
 	
@@ -47,42 +48,58 @@ func _ready():
 	pass # Replace with function body.
 
 func add_random_tasks(n=1):
-	var task_copy 
+	var task_copy
+	var tasks_added = 0
+	
 	#chance of sampling one event task each day
 	if (current_event != null):
 		task_copy = current_event.sample_task()
-		if task_copy != null:
+		if task_copy != null and task_can_spawn(task_copy):
 			n -= 1
+			tasks_added += 1
 			Tasks.append(task_copy)
 			print(Tasks[-1].short_description)
-	
+			
 	#sample standard tasks
-	var todays_task_bag = get_task_bag_for_today()
-	var task_bag = []
+	var task_bag = get_task_bag_for_today()
 	
 	for i in range(n):
-		if (task_bag.size() < 1):
-			task_bag = todays_task_bag.duplicate()
-			task_bag.shuffle()
+		if task_bag.size() < 1:
+			break
 		#var task = possible_tasks[randi() % possible_tasks.size()]
 		task_copy = Todo.new()
 		task_copy.load_from_todo(task_bag.pop_back())
+		tasks_added += 1
 		Tasks.append(task_copy)
+	
+	return tasks_added
 
-func get_task_bag_for_today():
+func get_task_bag_for_today():	
 	var possible_tasks_today = possible_tasks.duplicate()
+			
 	var todays_tags = get_tags_for_today()
 	#remove tasks for which there is a tag that prevents spawning
 	for task in possible_tasks:
-		for tag in todays_tags:
-			if task.tags_that_prevent.has(tag):
-				possible_tasks_today.erase(task)
-		for tag_prereq in task.tags_prereq:
-			if !todays_tags.has(tag_prereq):
-				possible_tasks_today.erase(task)
+		if !task_can_spawn(task):
+			possible_tasks_today.erase(task)
 		
 	var weighted_tasks_today = weight_tasks(possible_tasks_today)
+	weighted_tasks_today.shuffle()
 	return weighted_tasks_today
+
+func task_can_spawn(task):
+	var todays_tags = get_tags_for_today()
+	for tag in todays_tags:
+		if task.tags_that_prevent.has(tag):
+			return false
+	for tag_prereq in task.tags_prereq:
+		if !todays_tags.has(tag_prereq):
+			return false
+	for existing_task in Tasks:
+		if !existing_task.is_done and existing_task.orig_id == task.orig_id:
+			return false
+	return true
+	
 
 func weight_tasks(tasks):
 	weighted_tasks = []
@@ -150,9 +167,9 @@ func load_events():
 #	pass
 
 func check_event():
-	if (TodayIndex > event_start_day || current_event == null):
+	if (TodayIndex > event_start_day and current_event == null):
 		#events will be active for 10-20 days, then change
-		event_start_day = rand_range(TodayIndex+10, TodayIndex+20)
+		#event_start_day = rand_range(TodayIndex+10, TodayIndex+20)
 		current_event = possible_events[randi() % possible_events.size()]
 		current_event.reset_event()
 		print(current_event.description)
@@ -223,7 +240,6 @@ func _on_StartWorkButton_pressed():
 	
 	#sample new tasks for the day
 	var new_task_count = sample_approx_poisson()
-	emit_signal("push_notification", "%s new tasks were added." % [new_task_count])
 	
 	#send some notifications to the phone about world events
 	if current_event != null:
@@ -231,13 +247,24 @@ func _on_StartWorkButton_pressed():
 		if note != null:
 			emit_signal("push_notification", note)
 	
-	add_random_tasks(new_task_count)
+	var n_added = add_random_tasks(new_task_count)
+	if n_added > 0:
+		emit_signal("push_notification", "%s new tasks were added." % [n_added])
 	
 	# send signal for visible page of tasks
 	emit_signal("update_task_list", get_visible_tasks(), Tasks.size())
 	
 	emit_signal("update_today", [], TodayIndex % 7, [])
-	pass # Replace with function body.
+	
+	var todays_tags = get_tags_for_today()
+	if current_event != null:
+		for game_ender in current_event.game_enders:
+			if game_ender in todays_tags:
+				print("game ended: " + str(game_ender))
+				emit_signal("game_ended", game_ender)
+	if "dead" in todays_tags:
+		print("game ended: dead")
+		emit_signal("game_ended", "dead")
 
 func get_week_start():
 	return int(floor(TodayIndex / 7)*7)
