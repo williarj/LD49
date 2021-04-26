@@ -2,7 +2,7 @@
 
 [ext_resource path="res://scripts/TaskBox.gd" type="Script" id=1]
 [ext_resource path="res://assets/art/line.png" type="Texture" id=2]
-[ext_resource path="res://assets/art/rect.png" type="Texture" id=3]
+[ext_resource path="res://assets/art/disable_box.png" type="Texture" id=3]
 
 [node name="TaskBox" type="HBoxContainer"]
 margin_right = 164.0
@@ -47,7 +47,8 @@ texture = ExtResource( 2 )
 [node name="disabled_box" type="Sprite" parent="."]
 visible = false
 modulate = Color( 1, 1, 1, 0.454902 )
-position = Vector2( 75.6271, 12.3393 )
-scale = Vector2( 3.61632, 0.496862 )
+position = Vector2( 106.96, 12.1726 )
+scale = Vector2( 0.53, 0.675 )
 texture = ExtResource( 3 )
+
 [connection signal="pressed" from="CheckBox" to="." method="_on_CheckBox_pressed"]

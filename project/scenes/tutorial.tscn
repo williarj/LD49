@@ -1,0 +1,285 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://assets/art/close_tutorial_pressed.png" type="Texture" id=1]
+[ext_resource path="res://assets/art/tutorial_example.png" type="Texture" id=2]
+[ext_resource path="res://assets/art/arrow.png" type="Texture" id=3]
+[ext_resource path="res://assets/art/background.png" type="Texture" id=4]
+[ext_resource path="res://assets/art/close_tutorial.png" type="Texture" id=5]
+[ext_resource path="res://scenes/tutorial.gd" type="Script" id=6]
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource( 6 )
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="Background" type="Sprite" parent="."]
+position = Vector2( 512.012, 300.671 )
+scale = Vector2( 1.01427, 1.01807 )
+texture = ExtResource( 4 )
+
+[node name="Screenshot" type="Sprite" parent="."]
+position = Vector2( 506.234, 284.51 )
+scale = Vector2( 0.375527, 0.432519 )
+texture = ExtResource( 2 )
+
+[node name="ReturnButton" type="TextureButton" parent="."]
+margin_left = 756.962
+margin_top = 533.545
+margin_right = 1006.96
+margin_bottom = 583.545
+texture_normal = ExtResource( 5 )
+texture_pressed = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Tips" type="Node2D" parent="."]
+
+[node name="Tip1" type="Node2D" parent="Tips"]
+
+[node name="arrow" type="Sprite" parent="Tips/Tip1"]
+position = Vector2( 145.85, 299.777 )
+rotation = 2.46986
+scale = Vector2( 0.565087, 0.314286 )
+texture = ExtResource( 3 )
+
+[node name="Label" type="Label" parent="Tips/Tip1"]
+margin_left = 21.8474
+margin_top = 269.234
+margin_right = 115.847
+margin_bottom = 317.234
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "Select Tasks from your ToDo list."
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Tip2" type="Node2D" parent="Tips"]
+
+[node name="arrow" type="Sprite" parent="Tips/Tip2"]
+position = Vector2( 163.056, 348.331 )
+rotation = 0.261693
+scale = Vector2( 0.631504, 0.335979 )
+texture = ExtResource( 3 )
+flip_h = true
+
+[node name="Label" type="Label" parent="Tips/Tip2"]
+margin_left = 17.5736
+margin_top = 356.173
+margin_right = 142.574
+margin_bottom = 404.173
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "Tasks done on previous day's are marked off."
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Tip3" type="Node2D" parent="Tips"]
+
+[node name="arrow" type="Sprite" parent="Tips/Tip3"]
+position = Vector2( 173.898, 407.729 )
+scale = Vector2( 0.642397, 0.314286 )
+texture = ExtResource( 3 )
+flip_h = true
+
+[node name="Label" type="Label" parent="Tips/Tip3"]
+margin_left = 8.0
+margin_top = 427.515
+margin_right = 148.0
+margin_bottom = 492.515
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "Some tasks cannot be done today. Hover over them to find out why."
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Tip4" type="Node2D" parent="Tips"]
+
+[node name="arrow" type="Sprite" parent="Tips/Tip4"]
+position = Vector2( 139.25, 238.494 )
+scale = Vector2( 0.565087, 0.314286 )
+texture = ExtResource( 3 )
+flip_h = true
+flip_v = true
+
+[node name="Label" type="Label" parent="Tips/Tip4"]
+margin_left = 35.9584
+margin_top = 172.326
+margin_right = 160.958
+margin_bottom = 220.326
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "Total number of tasks in your pile."
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Tip5" type="Node2D" parent="Tips"]
+
+[node name="arrow" type="Sprite" parent="Tips/Tip5"]
+position = Vector2( 395.694, 56.5322 )
+rotation = -1.52716
+scale = Vector2( 0.565087, 0.314286 )
+texture = ExtResource( 3 )
+flip_v = true
+
+[node name="Label" type="Label" parent="Tips/Tip5"]
+margin_left = 210.3
+margin_top = 2.35703
+margin_right = 365.3
+margin_bottom = 55.357
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "Each day shows how much work you did, and the weather."
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Tip6" type="Node2D" parent="Tips"]
+
+[node name="arrow" type="Sprite" parent="Tips/Tip6"]
+position = Vector2( 664.866, 82.4594 )
+rotation = 2.10502
+scale = Vector2( 0.565087, 0.314286 )
+texture = ExtResource( 3 )
+flip_h = true
+
+[node name="Label" type="Label" parent="Tips/Tip6"]
+margin_left = 566.887
+margin_top = 7.12826
+margin_right = 766.887
+margin_bottom = 55.1283
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "This number shows how much work you've scheduled for today."
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Tip7" type="Node2D" parent="Tips"]
+
+[node name="arrow" type="Sprite" parent="Tips/Tip7"]
+position = Vector2( 359.396, 518.509 )
+scale = Vector2( 0.353898, 0.257717 )
+texture = ExtResource( 3 )
+
+[node name="Label" type="Label" parent="Tips/Tip7"]
+margin_left = 283.744
+margin_top = 545.414
+margin_right = 441.744
+margin_bottom = 593.414
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "When you're happy with your plan for your day press this!"
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Tip8" type="Node2D" parent="Tips"]
+
+[node name="arrow" type="Sprite" parent="Tips/Tip8"]
+position = Vector2( 191.576, 483.389 )
+scale = Vector2( 0.576401, 0.512276 )
+texture = ExtResource( 3 )
+flip_h = true
+
+[node name="Label" type="Label" parent="Tips/Tip8"]
+margin_left = 17.9722
+margin_top = 540.016
+margin_right = 230.972
+margin_bottom = 598.016
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "You can only work on tasks on the top note, each day you can clear up to one note."
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Tip9" type="Node2D" parent="Tips"]
+
+[node name="arrow" type="Sprite" parent="Tips/Tip9"]
+position = Vector2( 473.24, 291.056 )
+rotation = -1.81345
+scale = Vector2( 0.458743, 0.222115 )
+texture = ExtResource( 3 )
+flip_h = true
+
+[node name="Label" type="Label" parent="Tips/Tip9"]
+margin_left = 510.586
+margin_top = 251.943
+margin_right = 634.586
+margin_bottom = 340.943
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "This box shows things that are affecting your work today based on your past actions."
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Tip10" type="Node2D" parent="Tips"]
+
+[node name="arrow" type="Sprite" parent="Tips/Tip10"]
+position = Vector2( 492.803, 517.094 )
+rotation = -1.42631
+scale = Vector2( 0.565087, 0.314286 )
+texture = ExtResource( 3 )
+flip_h = true
+
+[node name="Label" type="Label" parent="Tips/Tip10"]
+margin_left = 523.144
+margin_top = 522.929
+margin_right = 679.144
+margin_bottom = 594.929
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "This box shows the effects your currently selected tasks will have you you in the future."
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Tip11" type="Node2D" parent="Tips"]
+
+[node name="arrow" type="Sprite" parent="Tips/Tip11"]
+position = Vector2( 819.015, 341.261 )
+rotation = -2.32053
+scale = Vector2( 0.565087, 0.314286 )
+texture = ExtResource( 3 )
+flip_h = true
+
+[node name="Label" type="Label" parent="Tips/Tip11"]
+margin_left = 868.683
+margin_top = 292.884
+margin_right = 1024.68
+margin_bottom = 391.884
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "Your phone will send you notifications about the world. These might affect your planning, so pay attention, they are only here temporarily!"
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Tip12" type="Node2D" parent="Tips"]
+
+[node name="arrow" type="Sprite" parent="Tips/Tip12"]
+position = Vector2( 895.383, 88.1164 )
+rotation = -0.157657
+scale = Vector2( 0.565087, 0.314286 )
+texture = ExtResource( 3 )
+
+[node name="Label" type="Label" parent="Tips/Tip12"]
+margin_left = 867.785
+margin_top = 119.771
+margin_right = 1006.79
+margin_bottom = 180.771
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "? - Opens this screen
+X - return to main menu"
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[connection signal="pressed" from="ReturnButton" to="." method="_on_ReturnButton_pressed"]
